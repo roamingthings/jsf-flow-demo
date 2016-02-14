@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Get into the Flow | Page 2</title>
+</h:head>
+<h:body>
+    <h1>Summary Page</h1>
+
+    <ui:include src="/WEB-INF/fragments/_flow-panel.xhtml" />
+
+    <div>The backing bean of this page has been created at: #{summaryPage.time}</div>
+    <div>The registration value retrieved from the registration view backing bean => #{summaryPage.registrationValue}</div>
+
+    <h:form id="confirmFrm">
+        <h:commandButton action="/confirm" value="Confirm and return from flow"/>
+    </h:form>
+</h:body>
+</html>

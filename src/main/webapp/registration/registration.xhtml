@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Get into the Flow | Page 1</title>
+</h:head>
+<f:metadata>
+    <f:viewAction action="#{flowParameterInitializer.initPage}" />
+    <f:viewParam name="id" value="#{flowParameterInitializer.id}" />
+</f:metadata>
+<h:body>
+    <h1>Registration</h1>
+
+    <ui:include src="/WEB-INF/fragments/_flow-panel.xhtml" />
+
+    <div>The backing bean of this page has been created at: #{registrationPage.time}</div>
+    <div>The registration value retrieved from the query => #{registrationPage.registrationValue}</div>
+
+    <h:form id="inFlowForm">
+        <h:commandButton action="summary" value="To Summary"/>
+    </h:form>
+</h:body>
+</html>

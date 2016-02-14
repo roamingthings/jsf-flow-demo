@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Get into the Flow</title>
+</h:head>
+<h:body>
+    <ui:composition>
+        <div>
+            <ui:fragment rendered="#{facesContext.application.flowHandler.currentFlow ne null}">
+                <p><strong>Flow scope with id <em>#{facesContext.application.flowHandler.currentFlow.id}</em> is active.</strong>
+                </p>
+            </ui:fragment>
+            <ui:fragment rendered="#{facesContext.application.flowHandler.currentFlow eq null}">
+                <p><strong>Currently no flow scope is active.</strong></p>
+            </ui:fragment>
+        </div>
+    </ui:composition>
+</h:body>
+</html>

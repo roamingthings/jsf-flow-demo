@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Get into the Flow | Welcome</title>
+</h:head>
+<h:body>
+    <h1>Welcome</h1>
+
+    <ui:include src="/WEB-INF/fragments/_flow-panel.xhtml"/>
+
+    <h:form id="intoFlowForm">
+        <h:commandButton action="registration" value="Get into the flow without parameter"/>
+    </h:form>
+    <h:link outcome="/registration/registration.xhtml" value="Link into the flow with query parameter">
+        <f:param value="5" name="id"/>
+    </h:link>
+</h:body>
+</html>
