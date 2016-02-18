@@ -15,10 +15,11 @@
  */
 package de.roamingthings.flowdemo.business.presentation;
 
-import de.roamingthings.flowdemo.business.registration.boundary.FlowParameterInitializer;
+import de.roamingthings.flowdemo.business.registration.boundary.FlowStarter;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.faces.context.FacesContext;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,7 +33,7 @@ import java.util.logging.Logger;
  * Backing bean for the {@code /registration/registration.xhtml} view.
  *
  * This bean is in the {@code registration} flow and retrieves the query parameter value from the
- * {@link FlowParameterInitializer}.
+ * {@link FlowStarter}.
  */
 @Named
 @FlowScoped(value = "registration")
@@ -40,7 +41,7 @@ public class RegistrationPage implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
-    FlowParameterInitializer starter;
+    FlowStarter starter;
 
     Logger log = Logger.getLogger(RegistrationPage.class.getName());
 
@@ -51,7 +52,7 @@ public class RegistrationPage implements Serializable {
     /**
      * This method gets called after the flow has been created.
      *
-     * When this method is called the {@link FlowParameterInitializer} has already captured the quary parameter and is
+     * When this method is called the {@link FlowStarter} has already captured the quary parameter and is
      * injected into this bean.
      *
      * In this example the value is retrived from the initializer and stored in the {@link #registrationValue} field.
@@ -60,11 +61,15 @@ public class RegistrationPage implements Serializable {
     public void init() {
         log.info("Initializing registration page bean");
 
-        // Get the query value from the initializer bean
-        registrationValue = starter.getId();
-
         // Store the time when this bean has been created
         created = new Date();
+    }
+
+    public void initializeFlow() {
+        final FacesContext facesContext = FacesContext.getCurrentInstance();
+        registrationValue = facesContext.getExternalContext().getRequestParameterMap().get("id");
+
+        log.info("---> Initialize flow called with query parameter " + registrationValue);
     }
 
     /**
