@@ -3,6 +3,17 @@
 This project demonstrates how to start a JSF flow context and pass a (request) parameter or value as a request query parameter of the
  flow.
 
+## The easier way
+
+As I learned after writing this example it is much easier to get to a parameter or other attributes when starting a flow.
+
+Just define an `initializer` either in the `xxx-flow.xml` definition or programmatically add an initializer. The action
+method that is referenced ad initializer is called after the flow is created allowing access to query parameters via a
+call to `facesContext.getExternalContext().getRequestParameterMap().get(parameterName);`.
+
+_However doing it this way will not start the flow itself since this needs a JSF call to the proper outcome. In this
+case the `FlowStarter` (previously `FlowParameterInitilizer`) is still needed to start the flow._
+
 ## JSF Flow Scope and inbound parameters
 
 In JSF 2.2 the `Flow scope` has been a great addition. It is now easier to implement wizard like dialogs that are
