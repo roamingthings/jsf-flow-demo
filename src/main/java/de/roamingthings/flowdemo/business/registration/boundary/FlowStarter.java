@@ -40,7 +40,7 @@ public class FlowStarter {
         final FacesContext facesContext = FacesContext.getCurrentInstance();
         if (facesContext != null && facesContext.getApplication().getFlowHandler().getCurrentFlow() == null) {
             // ### If not already in the flow, return the outcome to start it
-            log.fine("Starting registration flow");
+            log.info("Starting registration flow");
             return "registration";
         } {
             // ### If already in the flow don't return any outcome
